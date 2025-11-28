@@ -2,7 +2,7 @@
 
 export default function About() {
     return (
-        <div className="container mx-auto mb-12">
+        <div className="container mx-auto mb-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="relative">
                     <img className="rounded-2xl w-full " src="/assets/images/about_us/person.jpg" alt="" />
