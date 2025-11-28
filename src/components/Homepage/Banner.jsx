@@ -13,11 +13,18 @@ export default function Banner() {
                             key={index}
                             id={`slide${index + 1}`}
                             className="carousel-item relative w-full h-[90vh] bg-top bg-no-repeat rounded-xl">
-                            <div>
-                                <h1>Affordable Price For Car Servicing</h1>
+                            <div className="h-full w-full flex items-center pl-36">
+                                <div className="space-y-6">
+                                    <h1 className="text-4xl font-bold">{banner.title}</h1>
+                                    <p>{banner.description}</p>
+                                    <div className="space-x-3">
+                                        <button className="btn bg-[#FF3811] dark:border-none">Discover More</button>
+                                        <button className="btn btn-outline dark:bg-none">Latest Project</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                                <a href={banner.prev} className="btn btn-circle">❮</a>
+                            <div className="absolute flex transform justify-between bottom-12 right-12">
+                                <a href={banner.prev} className="btn btn-circle mr-6">❮</a>
                                 <a href={banner.next} className="btn btn-circle">❯</a>
                             </div>
                         </div>
