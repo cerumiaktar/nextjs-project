@@ -2,7 +2,7 @@
 
 export default function Banner() {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mt-12 mb-12">
             <div className="carousel w-full">
                 {
                     banners.map((banner, index) => (

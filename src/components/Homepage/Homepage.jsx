@@ -1,10 +1,12 @@
 import React from 'react'
 import Banner from './Banner'
+import About from './About'
 
 export default function Homepage() {
   return (
-    <div className='min-h-screen'>
+    <div className=''>
       <Banner></Banner>
+      <About></About>
     </div>
   )
 }
