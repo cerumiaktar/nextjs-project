@@ -5,8 +5,15 @@ import React from 'react'
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 
 export default function page() {
-    const handleSignUp = async () => {
+    const handleSignUp = async (event) => {
+        event.preventDefault();
 
+        const newUser = {
+            name: event.target.name.value,
+            email:event.target.email.value,
+            password: event.target.password.value,
+        };
+        console.log(newUser);
     }
     return (
         <div className='container mx-auto py-24'>
