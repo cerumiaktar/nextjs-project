@@ -2,11 +2,19 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
+import {signIn} from "next-auth/react"
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 
 export default function page() {
-    const handleLogin = async () =>{
-
+    const handleLogin = async (event) =>{
+        event.preventDefault();
+        const email= event.target.email.value;
+        const password= event.target.password.value;
+        const resp = signIn('credentials',{
+            email,
+            password,
+            redirect: false
+        })
     }
     return (
         <div className='container mx-auto py-24'>
