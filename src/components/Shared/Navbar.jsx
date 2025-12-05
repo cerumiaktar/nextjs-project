@@ -1,31 +1,14 @@
+"use client"
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { IoBagOutline,IoSearch } from "react-icons/io5";
+import { IoBagOutline, IoSearch } from "react-icons/io5";
 
 export default function Navbar() {
-    const navItems = [
-        {
-            title: "Home",
-            path: "/"
-        },
-        {
-            title: "About",
-            path: "/about"
-        },
-        {
-            title: "Services",
-            path: "/services"
-        },
-        {
-            title: "Blog",
-            path: "/blog"
-        },
-        {
-            title: "Contacts",
-            path: "/contacts"
-        }
-    ]
+
+    const session = useSession()
+    console.log(session);
     return (
         <div className='bg-base-100 shadow-sm'>
             <div className="navbar container mx-auto">
@@ -55,7 +38,7 @@ export default function Navbar() {
                 <div className="navbar-center hidden lg:flex">
                     <div className='flex items-center space-x-6'>
                         {
-                            navItems.map((item) =>(
+                            navItems.map((item) => (
                                 <Link className='font-semibold hover:text-[#FF3811]' href={item.path} key={item.path}>{item.title}</Link>
                             ))
                         }
@@ -66,9 +49,36 @@ export default function Navbar() {
                         <IoBagOutline />
                         <IoSearch />
                     </div>
-                    <a className="btn btn-outline hover:bg-[#FF3811]">Appointment</a>
+                    <a className="btn btn-outline hover:bg-[#FF3811] mr-4">Appointment</a>
+                    { !session.data ?
+                        <Link href="/login" className='btn bg-[#FF3811]'>Login</Link> :
+                        <button onClick={() =>signOut()} className='btn btn-warning'>Logout</button>
+                    }
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
+
+const navItems = [
+    {
+        title: "Home",
+        path: "/"
+    },
+    {
+        title: "About",
+        path: "/about"
+    },
+    {
+        title: "Services",
+        path: "/services"
+    },
+    {
+        title: "Blog",
+        path: "/blog"
+    },
+    {
+        title: "Contacts",
+        path: "/contacts"
+    }
+]

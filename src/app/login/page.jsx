@@ -3,18 +3,24 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import {signIn} from "next-auth/react"
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 
-export default function page() {
+import { useRouter } from 'next/navigation';
+import SocialSignin from '@/components/Shared/SocialSignin';
+
+export default function Page() {
+    const router = useRouter()
     const handleLogin = async (event) =>{
         event.preventDefault();
         const email= event.target.email.value;
         const password= event.target.password.value;
-        const resp = signIn('credentials',{
+        const resp = await signIn('credentials',{
             email,
             password,
             redirect: false
         })
+        if(resp.status === 200){
+            router.push('/')
+        }
     }
     return (
         <div className='container mx-auto py-24'>
@@ -40,11 +46,7 @@ export default function page() {
                         <button type='submit' className='btn bg-[#FF3811] w-full'>Signin</button>
                     </form>
                     <h6 className='text-center mt-2'>or sign in with</h6>
-                    <div className='flex justify-center gap-4 mt-4 mb-4'>
-                        <button className='btn'><FaFacebook /></button>
-                        <button className='btn'><FaGoogle /></button>
-                        <button className='btn'><FaGithub /></button>
-                    </div>
+                    <SocialSignin></SocialSignin>
                     <h6 className='text-center'>Do not have any account? <Link className='text-[#FF3811] font-bold' href={'/signup'}>Sign Up</Link> </h6>
                 </div>
             </div>
